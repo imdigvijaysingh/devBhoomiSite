@@ -277,15 +277,15 @@ const Home = () => {
               <ul className="nav-links">
                 {[
                   { label: "Home", href: "#home", onClick: () => scrollToSection('home') },
-                  { label: "About Us", href: "/about/about.html", external: true },
-                  { label: "Admissions", href: "/admission_form/admission.html", external: true },
-                  { label: "Courses", href: "courses/courses.html", external: true },
+                  { label: "About Us", href: "#", external: true },
+                  { label: "Admissions", href: "#", external: true },
+                  { label: "Courses", href: "#", external: true },
                   { label: "Academics", href: "https://erp175.balajisolution.in/", external: true },
-                  { label: "Placements", href: "/placements/placement.html", external: true },
+                  { label: "Placements", href: "#", external: true },
                   { label: "Campus Life", href: "#campus", onClick: () => scrollToSection('campus') },
                   { label: "Contact Us", href: "#contact", onClick: () => scrollToSection('contact') },
-                  { label: "Career @DBGI", href: "/career/career.html", external: true },
-                  { label: "Umeed", href: "/pdf_gallery/pdf_gallery.html", external: true },
+                  { label: "Career @DBGI", href: "#", external: true },
+                  { label: "Umeed", href: "#", external: true },
                 ].map((item, index) => (
                   <li key={index}>
                     {item.onClick ? (
