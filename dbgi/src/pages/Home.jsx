@@ -6,6 +6,11 @@ import Engineering from "../assets/courses_images/engineering.jpg";
 import Business from "../assets/courses_images/business.png";
 import Pharmacy from "../assets/courses_images/pharmacy.jpg";
 import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Notice from "../components/Notice";
+import About from "../components/About";
+import ApplyNow from "../components/ApplyNow";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const [currentNoticeSlide, setCurrentNoticeSlide] = useState(0);
@@ -14,47 +19,51 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
-  
+
   const statsSectionRef = useRef(null);
   const statsAnimated = useRef(false);
-  
+
   const noticeSlides = [
     {
       title: "Admissions Open 2025",
       description: "Apply before March 31st for the upcoming academic session",
       link: "/admission_form/admission.html",
-      buttonText: "Apply Now"
+      buttonText: "Apply Now",
     },
     {
       title: "Campus Recruitment",
-      description: "TCS campus drive on February 15th - Don't miss this opportunity",
+      description:
+        "TCS campus drive on February 15th - Don't miss this opportunity",
       link: "/placements/placements.html",
-      buttonText: "Register Now"
+      buttonText: "Register Now",
     },
     {
       title: "Annual Fest Tvaran 2025",
       description: "Join us for cultural extravaganza from November 10th",
       link: "/events/tvaran.html",
-      buttonText: "View Details"
-    }
+      buttonText: "View Details",
+    },
   ];
 
   const testimonials = [
     {
-      content: "The faculty here goes above and beyond to ensure we understand complex concepts. Their practical teaching approach has prepared me exceptionally well for my career.",
+      content:
+        "The faculty here goes above and beyond to ensure we understand complex concepts. Their practical teaching approach has prepared me exceptionally well for my career.",
       author: "Anjali Tiwari",
-      role: "BTECH(CSE) 2023-27"
+      role: "BTECH(CSE) 2023-27",
     },
     {
-      content: "The faculty doesn't just teach subjects; they mentor us for life. Their guidance helped me discover my true potential and career path.",
+      content:
+        "The faculty doesn't just teach subjects; they mentor us for life. Their guidance helped me discover my true potential and career path.",
       author: "Taniya Pundir",
-      role: "BTECH(CSE) 2023-27"
+      role: "BTECH(CSE) 2023-27",
     },
     {
-      content: "The teachers are truly approachable. Even the toughest subjects felt manageable because of their constant guidance.",
+      content:
+        "The teachers are truly approachable. Even the toughest subjects felt manageable because of their constant guidance.",
       author: "Sakshi Pundir",
-      role: "BTECH(CSE) 2024-28"
-    }
+      role: "BTECH(CSE) 2024-28",
+    },
   ];
 
   const campusCards = [
@@ -78,7 +87,7 @@ const Home = () => {
     { id: "women_empower", title: "Women Empowerment" },
     { id: "lovely_faculty", title: "Lovely Faculty" },
     { id: "parents_felicitation", title: "Parents Felicitation Ceremony" },
-    { id: "moot_court", title: "Moot Court Competition" }
+    { id: "moot_court", title: "Moot Court Competition" },
   ];
 
   const statsData = [
@@ -86,7 +95,7 @@ const Home = () => {
     { id: "students-count", number: "8,453+", label: "Students", value: 8453 },
     { id: "companies-count", number: "132+", label: "Companies", value: 132 },
     { id: "placement-rate", number: "80%", label: "Placement Rate", value: 80 },
-    { id: "package-amount", number: "37L", label: "Highest CTC", value: 37 }
+    { id: "package-amount", number: "37L", label: "Highest CTC", value: 37 },
   ];
 
   // Auto slide for notice board
@@ -110,8 +119,8 @@ const Home = () => {
     const handleScroll = () => {
       setHeaderScrolled(window.scrollY > 100);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Stats animation observer
@@ -139,27 +148,27 @@ const Home = () => {
 
   const animateStats = () => {
     console.log("animateStats called");
-    
+
     // Get all stat elements
-    const statElements = document.querySelectorAll('.stat-number');
-    
+    const statElements = document.querySelectorAll(".stat-number");
+
     if (statElements.length === 0) {
       console.log("No stat elements found");
       return;
     }
-    
+
     console.log(`Found ${statElements.length} stat elements`);
-    
+
     // Get all final values
-    const statsData = Array.from(statElements).map(stat => {
-      const finalValue = stat.getAttribute('data-final') || stat.textContent;
+    const statsData = Array.from(statElements).map((stat) => {
+      const finalValue = stat.getAttribute("data-final") || stat.textContent;
       console.log(`Final value: ${finalValue}`);
-      
-      const numericValue = parseFloat(finalValue.replace(/[+,%L]/g, ''));
-      const hasPlus = finalValue.includes('+');
-      const hasPercent = finalValue.includes('%');
-      const hasL = finalValue.includes('L');
-      
+
+      const numericValue = parseFloat(finalValue.replace(/[+,%L]/g, ""));
+      const hasPlus = finalValue.includes("+");
+      const hasPercent = finalValue.includes("%");
+      const hasL = finalValue.includes("L");
+
       return {
         element: stat,
         finalValue,
@@ -167,31 +176,32 @@ const Home = () => {
         hasPlus,
         hasPercent,
         hasL,
-        current: 0
+        current: 0,
       };
     });
 
     const duration = 2000; // 2 seconds
     const startTime = Date.now();
-    
+
     console.log(`Starting animation for ${statsData.length} counters`);
-    
+
     const updateCounters = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
-      statsData.forEach(stat => {
+
+      statsData.forEach((stat) => {
         if (stat.element) {
           const currentValue = stat.numericValue * progress;
-          
+
           if (stat.hasPercent) {
-            stat.element.textContent = Math.floor(currentValue) + '%';
+            stat.element.textContent = Math.floor(currentValue) + "%";
           } else if (stat.hasL) {
-            stat.element.textContent = Math.floor(currentValue) + 'L';
+            stat.element.textContent = Math.floor(currentValue) + "L";
           } else if (stat.hasPlus) {
-            stat.element.textContent = Math.floor(currentValue) + '+';
+            stat.element.textContent = Math.floor(currentValue) + "+";
           } else {
-            stat.element.textContent = Math.floor(currentValue).toLocaleString();
+            stat.element.textContent =
+              Math.floor(currentValue).toLocaleString();
           }
         }
       });
@@ -200,7 +210,7 @@ const Home = () => {
         requestAnimationFrame(updateCounters);
       } else {
         // Set final values
-        statsData.forEach(stat => {
+        statsData.forEach((stat) => {
           if (stat.element) {
             stat.element.textContent = stat.finalValue;
           }
@@ -234,111 +244,59 @@ const Home = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = document.querySelector('header')?.offsetHeight || 80;
-      const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      const headerHeight = document.querySelector("header")?.offsetHeight || 80;
+      const targetPosition =
+        element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
       window.scrollTo({
         top: targetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
       setMobileMenuOpen(false);
     }
   };
 
+  // Main file starts now
+
   return (
     <div className="home-container">
-      
+
       {/* Navigation bar */}
-      <Navbar 
-      headerScrolled={headerScrolled}
-      mobileMenuOpen={mobileMenuOpen}
-      setMobileMenuOpen={setMobileMenuOpen}
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-      handleSearch={handleSearch}
-      scrollToSection={scrollToSection}
-      logo={logo}
+      <Navbar
+        headerScrolled={headerScrolled}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearch={handleSearch}
+        scrollToSection={scrollToSection}
+        logo={logo}
       />
 
       {/* Hero Section */}
-      <section className="hero" id="home">
-        <div className="container">
-          <div className="hero-content">
-            <h1>Shape Your Future With Excellence</h1>
-            <p>
-              Join our vibrant community of learners and innovators at Dev
-              Bhoomi Group of Institutions, where we nurture talent and foster
-              success through world-class education.
-            </p>
-            <div className="hero-btns">
-              <button 
-                onClick={() => scrollToSection('programs')} 
-                className="btn"
-              >
-                Explore Programs
-              </button>
-              <a 
-                href="admission_form/admission.html" 
-                className="btn btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Apply Now
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* About Section */}
-      <section className="about" id="about">
-        <div className="container">
-          <div className="section-title">
-            <h2>About Dev Bhoomi Group of Institutions</h2>
-            <p>
-              Dev Bhoomi Group Of Institutions(DBGI) Saharanpur campus
-              established in the year 2009 is a premier group of institutions of
-              Uttarakhand Uthan Samiti, a non-profit Society, professionally
-              managed by the Eminent Academicians, Industrialists and
-              Scientists.
-            </p>
-          </div>
-          <div className="about-content">
-            <div className="about-text">
-              <h3>Our Legacy of Excellence</h3>
-              <p>
-                Keeping in tune with the upsurge in technical developments, the
-                Samiti being committed to the cause of quality education and has
-                established Six Temples of Learning and Innovations. DBGI is one
-                of the best developing engineering colleges of Saharanpur
-                district. The Campus is about 4 Km from Civil Hospital towards
-                D.M. Residence at Beri Jama, Saharanpur. The nearest Airport is
-                Jollygrant about 95 KMs from the Institute. The sprawling main
-                campus is spread in one piece of land of 150 Bighas (22 acres),
-                in the surroundings of greeneries, flora & fauna besides the
-                National Forest.
-              </p>
-              <a href="/about/about.html" className="btn about-cta">
-                Learn More
-              </a>
-            </div>
-            <div className="about-image">
-              <img src={campus1} alt="DBGI Campus" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <About 
+      campus1={campus1} 
+      />
 
       {/* Stats Section */}
       <section className="stats-section" ref={statsSectionRef} id="stats">
         <div className="stats-container">
           {statsData.map((stat, index) => (
             <div className="stat-card" key={index}>
-              <div 
-                className="stat-number" 
+              <div
+                className="stat-number"
                 id={stat.id}
                 data-final={stat.number}
               >
-                {stat.number.includes('+') ? '0+' : stat.number.includes('%') ? '0%' : stat.number.includes('L') ? '0L' : '0'}
+                {stat.number.includes("+")
+                  ? "0+"
+                  : stat.number.includes("%")
+                  ? "0%"
+                  : stat.number.includes("L")
+                  ? "0L"
+                  : "0"}
               </div>
               <div className="stat-label">{stat.label}</div>
             </div>
@@ -347,39 +305,11 @@ const Home = () => {
       </section>
 
       {/* Notice Board Section */}
-      <section className="notice" id="notice">
-        <div className="container">
-          <div className="section-title">
-            <h2>Notice Board</h2>
-            <p>Stay updated with the latest announcements and events</p>
-          </div>
-          <div className="notice-slider">
-            {noticeSlides.map((slide, index) => (
-              <div 
-                key={index} 
-                className={`notice-slide ${currentNoticeSlide === index ? 'active' : ''}`}
-              >
-                <div className="notice-content">
-                  <h3>{slide.title}</h3>
-                  <p>{slide.description}</p>
-                  <a href={slide.link} className="btn">
-                    {slide.buttonText}
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="slider-dots">
-            {noticeSlides.map((_, index) => (
-              <span 
-                key={index}
-                className={`dot ${currentNoticeSlide === index ? 'active' : ''}`}
-                onClick={() => setCurrentNoticeSlide(index)}
-              ></span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Notice
+        noticeSlides={noticeSlides}
+        currentNoticeSlide={currentNoticeSlide}
+        setCurrentNoticeSlide={setCurrentNoticeSlide}
+      />
 
       {/* Programs Section */}
       <section className="programs" id="programs">
@@ -397,20 +327,23 @@ const Home = () => {
                 img: Engineering,
                 alt: "Engineering",
                 title: "Engineering & Technology",
-                description: "Cutting-edge programs in computer science, mechanical, electrical, and civil engineering with industry partnerships."
+                description:
+                  "Cutting-edge programs in computer science, mechanical, electrical, and civil engineering with industry partnerships.",
               },
               {
                 img: Business,
                 alt: "Business",
                 title: "Business & Management",
-                description: "Develop leadership skills and business acumen through our AACSB-accredited business programs."
+                description:
+                  "Develop leadership skills and business acumen through our AACSB-accredited business programs.",
               },
               {
                 img: Pharmacy,
                 alt: "Health Sciences",
                 title: "Pharmacy",
-                description: "Prepare for careers in medicine, nursing, pharmacy, and public health with our comprehensive health sciences programs."
-              }
+                description:
+                  "Prepare for careers in medicine, nursing, pharmacy, and public health with our comprehensive health sciences programs.",
+              },
             ].map((program, index) => (
               <div className="program-card" key={index}>
                 <div className="program-img">
@@ -419,9 +352,9 @@ const Home = () => {
                 <div className="program-content">
                   <h3>{program.title}</h3>
                   <p>{program.description}</p>
-                  <a 
-                    href="academics/academics.html" 
-                    target="_blank" 
+                  <a
+                    href="academics/academics.html"
+                    target="_blank"
                     className="btn"
                     rel="noopener noreferrer"
                   >
@@ -446,18 +379,14 @@ const Home = () => {
           </div>
           <div className="campus-grid">
             {campusCards.map((card, index) => (
-              <div 
-                className="campus-card" 
-                key={index}
-                id={card.id}
-              >
+              <div className="campus-card" key={index} id={card.id}>
                 <h3>{card.title}</h3>
               </div>
             ))}
           </div>
         </div>
       </section>
-
+      
       {/* Testimonials Section */}
       <section className="testimonials" id="testimonials">
         <div className="container">
@@ -470,13 +399,13 @@ const Home = () => {
           </div>
           <div className="testimonial-slider">
             {testimonials.map((testimonial, index) => (
-              <div 
+              <div
                 key={index}
-                className={`testimonial-slide ${currentTestimonialSlide === index ? 'active' : ''}`}
+                className={`testimonial-slide ${
+                  currentTestimonialSlide === index ? "active" : ""
+                }`}
               >
-                <div className="testimonial-content">
-                  {testimonial.content}
-                </div>
+                <div className="testimonial-content">{testimonial.content}</div>
                 <div className="testimonial-author">{testimonial.author}</div>
                 <div className="testimonial-role">{testimonial.role}</div>
               </div>
@@ -484,9 +413,11 @@ const Home = () => {
           </div>
           <div className="slider-dots">
             {testimonials.map((_, index) => (
-              <span 
+              <span
                 key={index}
-                className={`dot ${currentTestimonialSlide === index ? 'active' : ''}`}
+                className={`dot ${
+                  currentTestimonialSlide === index ? "active" : ""
+                }`}
                 onClick={() => setCurrentTestimonialSlide(index)}
               ></span>
             ))}
@@ -495,105 +426,15 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="cta" id="admissions">
-        <div className="container">
-          <h2>Ready to Begin Your Journey?</h2>
-          <p>
-            Take the first step toward your future at Dev Bhoomi Group of
-            Institutions. Applications for the next academic year are now open.
-          </p>
-          <a 
-            href="admission_form/admission.html" 
-            className="btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Apply Now
-          </a>
-        </div>
-      </section>
-
+      <ApplyNow />
+      
       {/* Footer */}
-      <footer id="contact">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-column">
-              <h3>DBGI</h3>
-              <p>
-                Milestone Dabki Road <br />
-                Village Beri Jamapur
-                <br />
-                Saharanpur (Uttar Pradesh) 247001
-              </p>
-              <p>Phone: 9568775222, 9568776222</p>
-              <p>Email: dbgi@dbgisre.edu.in</p>
-              <div className="social-links">
-                {[
-                  { icon: "fa-facebook-f", href: "https://www.facebook.com/dbgisre" },
-                  { icon: "fa-twitter", href: "#" },
-                  { icon: "fa-instagram", href: "https://www.instagram.com/dbgi.saharanpur/" },
-                  { icon: "fa-linkedin-in", href: "#" },
-                  { icon: "fa-youtube", href: "https://www.youtube.com/@dbgisaharanpurofficial" }
-                ].map((social, index) => (
-                  <a 
-                    key={index}
-                    href={social.href} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    aria-label={`${social.icon.split('-')[1]} social media`}
-                  >
-                    <i className={`fab ${social.icon}`}></i>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="footer-column">
-              <h3>Quick Links</h3>
-              {["Home", "About Us", "Academic Programs", "Admissions", "Campus Life"].map((link, index) => (
-                <a 
-                  key={index} 
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(link.toLowerCase().replace(' ', '-')); }}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-            <div className="footer-column">
-              <h3>Resources</h3>
-              {["Library", "Career Services", "Student Portal", "Alumni Network", "Campus Map"].map((resource, index) => (
-                <a key={index} href="#">{resource}</a>
-              ))}
-            </div>
-            <div className="footer-column">
-              <h3>Newsletter</h3>
-              <p>
-                Subscribe to our newsletter for the latest updates and events.
-              </p>
-              {subscribed ? (
-                <div className="subscription-success">
-                  Thank you for subscribing!
-                </div>
-              ) : (
-                <form onSubmit={handleNewsletterSubmit}>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your email address"
-                    required
-                  />
-                  <button type="submit" className="btn">
-                    Subscribe
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-          <div className="copyright">
-            <p>&copy; {new Date().getFullYear()} DBGI SAHARANPUR. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer 
+        subscribed={subscribed}
+        setSubscribed={setSubscribed}
+        scrollToSection={scrollToSection}
+        handleNewsletterSubmit={handleNewsletterSubmit}
+      />
     </div>
   );
 };
