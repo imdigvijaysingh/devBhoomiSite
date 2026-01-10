@@ -1,0 +1,3 @@
+[build]
+  command = "cd dbgi && npm run build"
+  publish = "dbgi/dist"
