@@ -1,5 +1,7 @@
 import React from "react";
 import "../styles/Home.css";
+import logo from "../assets/images/logo.png";
+import { Link } from "react-router-dom";
 
 const Navbar = ({
   headerScrolled,
@@ -9,7 +11,6 @@ const Navbar = ({
   setSearchQuery,
   handleSearch,
   scrollToSection,
-  logo,
 }) => {
   return (
     <div>
@@ -46,61 +47,58 @@ const Navbar = ({
               </form>
             </div>
 
+
             {/* Navigation */}
-            <nav className={`nav-container ${mobileMenuOpen ? "active" : ""}`}>
-              <ul className="nav-links">
-                {[
-                  {
-                    label: "Home",
-                    href: "#home",
-                    onClick: () => scrollToSection("home"),
-                  },
-                  { label: "About Us", href: "#", external: true },
-                  { label: "Admissions", href: "#", external: true },
-                  { label: "Courses", href: "#", external: true },
-                  {
-                    label: "Academics",
-                    href: "https://erp175.balajisolution.in/",
-                    external: true,
-                  },
-                  { label: "Placements", href: "#", external: true },
-                  {
-                    label: "Campus Life",
-                    href: "#campus",
-                    onClick: () => scrollToSection("campus"),
-                  },
-                  {
-                    label: "Contact Us",
-                    href: "#contact",
-                    onClick: () => scrollToSection("contact"),
-                  },
-                  { label: "Career @DBGI", href: "#", external: true },
-                  { label: "Umeed", href: "#", external: true },
-                ].map((item, index) => (
-                  <li key={index}>
-                    {item.onClick ? (
-                      <a
-                        href={item.href}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          item.onClick();
-                        }}
-                        className={index === 0 ? "active" : ""}
-                      >
-                        {item.label}
-                      </a>
-                    ) : (
-                      <a
-                        href={item.href}
-                        rel={item.external ? "noopener noreferrer" : ""}
-                      >
-                        {item.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </nav>
+          <nav className={`nav-container ${mobileMenuOpen ? "active" : ""}`}>
+            <ul className="nav-links">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About Us</Link>
+              </li>
+              <li>
+                <Link to="#">Admissions</Link>
+              </li>
+              <li>
+                <Link to="#">Courses</Link>
+              </li>
+              <li>
+                <Link to="https://erp175.balajisolution.in/">Academics</Link>
+              </li>
+              <li>
+                <Link to="#">Placements</Link>
+              </li>
+              <li>
+                <Link 
+                  to="#campus" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("campus");
+                  }}
+                >
+                  Campus Life
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  to="#contact" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("contact");
+                  }}
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="#">Career @DBGI</Link>
+              </li>
+              <li>
+                <Link to="#">Umeed</Link>
+              </li>
+            </ul>
+          </nav>
 
             {/* Mobile Menu Toggle */}
             <button

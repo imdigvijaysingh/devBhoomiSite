@@ -11,6 +11,7 @@ import Notice from "../components/Notice";
 import About from "../components/About";
 import ApplyNow from "../components/ApplyNow";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [currentNoticeSlide, setCurrentNoticeSlide] = useState(0);
@@ -272,12 +273,42 @@ const Home = () => {
         logo={logo}
       />
 
-      {/* Hero Section */}
-      <Hero />
+      {/* Hero Section */}  
+      <Hero
+        heading="Shape Your Future With Excellence"
+        description="Join our vibrant community of learners and innovators at Dev Bhoomi Group of Institutions, where we nurture talent and foster success through world-class education."
+        showButtons={true}
+        primaryBtnText="Explore Programs"
+        secondaryBtnText="Apply Now"
+        onPrimaryClick={() => scrollToSection("programs")}
+        secondaryBtnLink="/admission_form/admission.html"
+      />
 
       {/* About Section */}
       <About 
-      campus1={campus1} 
+        titleHeading="About Dev Bhoomi Group of Institutions"
+        
+        titleDescription="Dev Bhoomi Group Of Institutions(DBGI) Saharanpur campus
+          established in the year 2009 is a premier group of 
+          institutions of Uttarakhand Uthan Samiti, a non-profit 
+          Society, professionally managed by the Eminent Academicians, 
+          Industrialists and Scientists."
+        
+        contentHeading="Our Legacy of Excellence"
+        
+        contentDescription="Keeping in tune with the upsurge in technical developments, the
+          Samiti being committed to the cause of quality education and has
+          established Six Temples of Learning and Innovations. DBGI is one
+          of the best developing engineering colleges of Saharanpur
+          district. The Campus is about 4 Km from Civil Hospital towards
+          D.M. Residence at Beri Jama, Saharanpur. The nearest Airport is
+          Jollygrant about 95 KMs from the Institute. The sprawling main
+          campus is spread in one piece of land of 150 Bighas (22 acres),
+          in the surroundings of greeneries, flora & fauna besides the
+          National Forest."
+        
+        showButtons={true}
+        btnText="Learn More"
       />
 
       {/* Stats Section */}
@@ -352,14 +383,13 @@ const Home = () => {
                 <div className="program-content">
                   <h3>{program.title}</h3>
                   <p>{program.description}</p>
-                  <a
-                    href="academics/academics.html"
-                    target="_blank"
+                  <Link 
+                    to="#"
                     className="btn"
                     rel="noopener noreferrer"
                   >
                     Learn More
-                  </a>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -426,7 +456,12 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <ApplyNow />
+      <ApplyNow
+        heading="Ready to Begin Your Journey?"
+        description="Take the first step toward your future at Dev Bhoomi Group of
+        Institutions. Applications for the next academic year are now open."
+        btnText="Apply Now"
+      />
       
       {/* Footer */}
       <Footer 

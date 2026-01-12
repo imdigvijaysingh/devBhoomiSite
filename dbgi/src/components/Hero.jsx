@@ -1,38 +1,46 @@
-import React from 'react'
-import '../styles/Home.css'
-const Hero = () => {
+import React from "react";
+import "../styles/Home.css";
+import { Link } from "react-router-dom";
+
+const Hero = ({
+  heading,
+  description,
+  showButtons = true,
+  primaryBtnText,
+  secondaryBtnText,
+  onPrimaryClick,
+  secondaryBtnLink,
+}) => {
   return (
-    <div>
-      <section className="hero" id="home">
-        <div className="container">
-          <div className="hero-content">
-            <h1>Shape Your Future With Excellence</h1>
-            <p>
-              Join our vibrant community of learners and innovators at Dev
-              Bhoomi Group of Institutions, where we nurture talent and foster
-              success through world-class education.
-            </p>
+    <section className="hero" id="home">
+      <div className="container">
+        <div className="hero-content">
+          <h1>{heading}</h1>
+          <p>{description}</p>
+
+          {showButtons && (
             <div className="hero-btns">
-              <button 
-                onClick={() => scrollToSection('programs')} 
-                className="btn"
-              >
-                Explore Programs
-              </button>
-              <a 
-                href="admission_form/admission.html" 
-                className="btn btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Apply Now
-              </a>
+              {primaryBtnText && (
+                <button onClick={onPrimaryClick} className="btn">
+                  {primaryBtnText}
+                </button>
+              )}
+
+              {secondaryBtnText && secondaryBtnLink && (
+                <Link
+                  to={secondaryBtnLink}
+                  className="btn btn-outline"
+                  rel="noopener noreferrer"
+                >
+                  {secondaryBtnText}
+                </Link>
+              )}
             </div>
-          </div>
+          )}
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
 
-export default Hero
+export default Hero;

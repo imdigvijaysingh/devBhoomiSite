@@ -1,22 +1,26 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
-const ApplyNow = () => {
+const ApplyNow = ({
+  heading,
+  description,
+  btnText,
+}) => {
   return (
     <div>
       <section className="cta" id="admissions">
         <div className="container">
-          <h2>Ready to Begin Your Journey?</h2>
+          <h2>{heading}</h2>
           <p>
-            Take the first step toward your future at Dev Bhoomi Group of
-            Institutions. Applications for the next academic year are now open.
+            {description}
           </p>
-          <a
-            href="admission_form/admission.html"
+          <Link
+            to="admission_form/admission.html"
             className="btn"
             rel="noopener noreferrer"
           >
-            Apply Now
-          </a>
+            {btnText}
+          </Link>
         </div>
       </section>
     </div>
