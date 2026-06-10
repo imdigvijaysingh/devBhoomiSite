@@ -10,10 +10,12 @@ import Career from './pages/Career'
 import Umeed from './pages/Umeed'
 import Academics from './pages/Academics'
 import NotFoundPage from './pages/NotFoundPage'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <div>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/pages/about-us' element={<About />} />
